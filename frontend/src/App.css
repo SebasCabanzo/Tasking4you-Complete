@@ -791,3 +791,671 @@
     min-height: 120px;
   }
 }
+
+/* ==========================================
+   TASKING4YOU - REFINAMIENTO VISUAL V2
+   ========================================== */
+
+.app-layout {
+  background: #f6f5fb;
+}
+
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  padding: 30px 19px 22px;
+}
+
+.brand-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  box-shadow: 0 5px 14px rgba(117, 84, 223, 0.2);
+}
+
+.sidebar-create {
+  min-height: 46px;
+  border-radius: 11px;
+  box-shadow: 0 5px 12px rgba(117, 84, 223, 0.16);
+}
+
+.menu-item {
+  min-height: 43px;
+  border-radius: 11px;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+  transform: translateX(3px);
+}
+
+.menu-item.active {
+  background: #f0ebff;
+  box-shadow: inset 3px 0 0 #7554df;
+}
+
+.header {
+  height: 86px;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.search-box {
+  height: 43px;
+  border-radius: 11px;
+  transition: all 0.2s ease;
+}
+
+.search-box:focus-within {
+  border-color: #b9a6f5;
+  box-shadow: 0 0 0 3px rgba(117, 84, 223, 0.09);
+}
+
+.dashboard-content {
+  max-width: 1600px;
+  padding-top: 42px;
+  padding-bottom: 32px;
+}
+
+.welcome-section h1 {
+  font-size: clamp(24px, 2.3vw, 31px);
+  letter-spacing: -1.1px;
+  font-weight: 800;
+}
+
+.welcome-decoration {
+  border-radius: 22px;
+  box-shadow: 0 7px 20px rgba(117, 84, 223, 0.09);
+}
+
+.stats-grid {
+  gap: 20px;
+  margin-bottom: 38px;
+}
+
+.stat-card {
+  min-height: 164px;
+  padding: 23px;
+  border-radius: 17px;
+  box-shadow: 0 8px 28px rgba(43, 31, 79, 0.045);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 13px 32px rgba(43, 31, 79, 0.08);
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.stat-card strong {
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+
+.workspace {
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.9fr);
+  gap: 25px;
+}
+
+.section-heading h2 {
+  font-size: 19px;
+}
+
+.task-form {
+  padding: 24px;
+  border-radius: 17px;
+  box-shadow: 0 8px 28px rgba(43, 31, 79, 0.045);
+}
+
+.form-fields {
+  gap: 13px;
+}
+
+.form-fields input {
+  height: 46px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.form-fields button {
+  min-height: 46px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.form-fields button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(117, 84, 223, 0.2);
+}
+
+.task-card {
+  padding: 19px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(43, 31, 79, 0.025);
+  transition: all 0.22s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  border-color: #d8ccfa;
+  box-shadow: 0 8px 28px rgba(43, 31, 79, 0.045);
+}
+
+.task-information h4 {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.empty-state {
+  padding: 50px 24px;
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+}
+
+@media (max-width: 1050px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    min-width: 0;
+    padding: 15px;
+  }
+
+  .header {
+    padding: 14px 17px;
+  }
+
+  .dashboard-content {
+    padding: 27px 17px;
+  }
+
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .task-form {
+    padding: 19px;
+  }
+}
+
+
+/* ==========================================
+   TASKING4YOU - MODO OSCURO
+   ========================================== */
+
+.app-layout.theme-dark {
+  background: #151321;
+  color: #eeeaf8;
+}
+
+.theme-dark .sidebar,
+.theme-dark .header {
+  background: #1d1a2b;
+  border-color: #302b40;
+}
+
+.theme-dark .brand,
+.theme-dark .header-greeting h2,
+.theme-dark .welcome-section h1,
+.theme-dark .section-heading h2,
+.theme-dark .form-heading h3,
+.theme-dark .stat-card strong,
+.theme-dark .task-information h4 {
+  color: #f0ecfa;
+}
+
+.theme-dark .workspace-label,
+.theme-dark .menu-label,
+.theme-dark .header-greeting span,
+.theme-dark .date-label,
+.theme-dark .welcome-section p,
+.theme-dark .section-heading p,
+.theme-dark .stat-label,
+.theme-dark .stat-description,
+.theme-dark .form-heading p,
+.theme-dark .dashboard-footer {
+  color: #a49bb9;
+}
+
+.theme-dark .menu-item {
+  color: #bcb4d0;
+}
+
+.theme-dark .menu-item:hover {
+  background: #29243b;
+  color: #c3afff;
+}
+
+.theme-dark .menu-item.active {
+  background: #30264d;
+  color: #c5b3ff;
+  box-shadow: inset 3px 0 0 #9575f5;
+}
+
+.theme-dark .menu-count {
+  color: #aaa0c3;
+}
+
+.theme-dark .sidebar-tip {
+  background: #29223e;
+  border: 1px solid #3b3156;
+}
+
+.theme-dark .sidebar-tip p,
+.theme-dark .sidebar-user span {
+  color: #aaa0c3;
+}
+
+.theme-dark .sidebar-user {
+  border-color: #302b40;
+}
+
+.theme-dark .user-avatar {
+  background: #3a2e5d;
+  color: #d0c0ff;
+}
+
+.theme-dark .search-box,
+.theme-dark .form-fields input {
+  background: #252135;
+  border-color: #39334c;
+  color: #f0ecfa;
+}
+
+.theme-dark .search-box input {
+  color: #f0ecfa;
+}
+
+.theme-dark .search-box input::placeholder,
+.theme-dark .form-fields input::placeholder {
+  color: #9188a7;
+}
+
+.theme-dark .search-box:focus-within,
+.theme-dark .form-fields input:focus {
+  border-color: #9575f5;
+}
+
+.theme-dark .header-icon {
+  background: #252135;
+  border-color: #39334c;
+  color: #c9baff;
+}
+
+.theme-dark .header-icon:hover {
+  background: #332a4c;
+}
+
+.theme-dark .stat-card,
+.theme-dark .task-form,
+.theme-dark .task-card,
+.theme-dark .empty-state {
+  background: #211e30;
+  border-color: #353047;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+}
+
+.theme-dark .stat-card:hover,
+.theme-dark .task-card:hover {
+  border-color: #65518e;
+}
+
+.theme-dark .purple {
+  background: #382c59;
+  color: #c5b1ff;
+}
+
+.theme-dark .orange {
+  background: #493525;
+  color: #ffc17a;
+}
+
+.theme-dark .green {
+  background: #234438;
+  color: #7bd8ae;
+}
+
+.theme-dark .welcome-decoration,
+.theme-dark .form-icon,
+.theme-dark .empty-icon {
+  background: #33284f;
+  color: #c7b4ff;
+}
+
+.theme-dark .task-check {
+  background: #29253a;
+  border-color: #5a526e;
+}
+
+.theme-dark .task-check.checked {
+  background: #7959db;
+  border-color: #7959db;
+}
+
+.theme-dark .task-information p {
+  color: #a49bb9;
+}
+
+.theme-dark .task-completed .task-information h4 {
+  color: #89819d;
+}
+
+.theme-dark .status-pending {
+  background: #493525;
+  color: #ffc17a;
+}
+
+.theme-dark .status-done {
+  background: #234438;
+  color: #7bd8ae;
+}
+
+.theme-dark .task-total {
+  background: #33284f;
+  color: #c7b4ff;
+}
+
+.theme-dark .empty-state {
+  border-color: #51446f;
+}
+
+.theme-dark .empty-state h3 {
+  color: #f0ecfa;
+}
+
+.theme-dark .empty-state p {
+  color: #a49bb9;
+}
+
+.theme-dark .delete-task {
+  color: #aaa0c3;
+}
+
+.theme-dark .dashboard-footer {
+  border-color: #302b40;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-dark *,
+  .theme-dark *::before,
+  .theme-dark *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* CALENDARIO TASKING4YOU */
+.calendar-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(250px, 0.8fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.calendar-panel,
+.calendar-agenda {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #e8e4f0);
+  border-radius: 18px;
+  padding: 22px;
+  min-width: 0;
+}
+
+.calendar-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.calendar-eyebrow {
+  color: #8963e8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.calendar-heading h2 {
+  margin: 5px 0;
+  text-transform: capitalize;
+  font-size: 23px;
+}
+
+.calendar-heading p,
+.agenda-heading p {
+  color: #9992ad;
+  font-size: 12px;
+  margin: 4px 0 0;
+}
+
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.calendar-navigation button {
+  border: 1px solid var(--border-color, #e8e4f0);
+  background: transparent;
+  color: inherit;
+  border-radius: 9px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.calendar-weekday {
+  text-align: center;
+  color: #9b94ae;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 8px 0;
+}
+
+.calendar-day {
+  min-width: 0;
+  min-height: 67px;
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border-color, #e8e4f0);
+  background: transparent;
+  color: inherit;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.calendar-day:hover,
+.calendar-day.selected {
+  border-color: #8963e8;
+  background: rgba(137, 99, 232, 0.13);
+}
+
+.calendar-day.today > span:first-child {
+  background: #7951dc;
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+}
+
+.calendar-day-indicator {
+  color: #9b79ed;
+  font-size: 9px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.calendar-day.empty {
+  border-color: transparent;
+  cursor: default;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 18px;
+  margin-top: 20px;
+  color: #9992ad;
+  font-size: 11px;
+}
+
+.calendar-legend span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.calendar-legend i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-today { background: #7951dc; }
+.legend-task { background: #b49aef; }
+
+.agenda-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  color: #8963e8;
+}
+
+.agenda-heading h3 {
+  color: inherit;
+  margin: 0;
+  font-size: 16px;
+}
+
+.agenda-empty {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  color: #9992ad;
+  font-size: 12px;
+}
+
+.agenda-empty strong {
+  color: inherit;
+}
+
+.agenda-empty p {
+  max-width: 210px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.agenda-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.agenda-task {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(137, 99, 232, 0.08);
+}
+
+.agenda-task-icon {
+  color: #8963e8;
+}
+
+.agenda-task strong {
+  font-size: 12px;
+}
+
+.agenda-task p {
+  font-size: 11px;
+  color: #9992ad;
+  margin: 5px 0;
+}
+
+.agenda-task span {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.agenda-done { color: #36a77b; }
+.agenda-pending { color: #d69a42; }
+
+.theme-dark .calendar-panel,
+.theme-dark .calendar-agenda {
+  background: #211d2e;
+  border-color: #393149;
+}
+
+.theme-dark .calendar-heading h2,
+.theme-dark .agenda-task strong {
+  color: #f3efff;
+}
+
+.theme-dark .calendar-day {
+  border-color: #393149;
+}
+
+.theme-dark .calendar-day:hover,
+.theme-dark .calendar-day.selected {
+  background: rgba(137, 99, 232, 0.2);
+  border-color: #8963e8;
+}
+
+@media (max-width: 900px) {
+  .calendar-view {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .calendar-panel,
+  .calendar-agenda {
+    padding: 13px;
+  }
+
+  .calendar-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .calendar-day {
+    min-height: 53px;
+    font-size: 12px;
+  }
+
+  .calendar-day-indicator {
+    font-size: 8px;
+  }
+}

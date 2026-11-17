@@ -1,4 +1,4 @@
-const defaultRepository = require('../repositories/task.repository');
+﻿const defaultRepository = require('../repositories/task.repository');
 
 function createTaskService(repository = defaultRepository) {
   return {
@@ -15,35 +15,51 @@ function createTaskService(repository = defaultRepository) {
 
       const title = typeof payload.title === 'string' ? payload.title.trim() : '';
       const description = payload.description == null ? '' : payload.description;
+      const dueDate = payload.due_date == null || payload.due_date === ''
+        ? null
+        : payload.due_date;
+
+      if (dueDate !== null) {
+        const validFormat = /^\d{4}-\d{2}-\d{2}$/.test(dueDate);
+        const parsedDate = validFormat ? new Date(`${dueDate}T00:00:00Z`) : null;
+        const validDate = parsedDate && !Number.isNaN(parsedDate.getTime())
+          && parsedDate.toISOString().slice(0, 10) === dueDate;
+
+        if (!validDate) {
+          const error = new Error('La fecha límite no es válida.');
+          error.status = 400;
+          throw error;
+        }
+      }
 
       if (!title) {
-        const error = new Error('El título es obligatorio.');
+        const error = new Error('El t\u00edtulo es obligatorio.');
         error.status = 400;
         throw error;
       }
       if (title.length > 160) {
-        const error = new Error('El título no puede superar los 160 caracteres.');
+        const error = new Error('El tÃ­tulo no puede superar los 160 caracteres.');
         error.status = 400;
         throw error;
       }
       if (typeof description !== 'string') {
-        const error = new Error('La descripción debe ser un texto.');
+        const error = new Error('La descripciÃ³n debe ser un texto.');
         error.status = 400;
         throw error;
       }
       if (description.length > 5000) {
-        const error = new Error('La descripción no puede superar los 5000 caracteres.');
+        const error = new Error('La descripciÃ³n no puede superar los 5000 caracteres.');
         error.status = 400;
         throw error;
       }
 
-      return repository.create({ title, description: description.trim() });
+      return repository.create({ title, description: description.trim(), due_date: dueDate });
     },
 
     async updateTask(id, payload) {
       const numericId = Number(id);
       if (!Number.isSafeInteger(numericId) || numericId <= 0) {
-        const error = new Error('El identificador de la tarea no es válido.');
+        const error = new Error('El identificador de la tarea no es vÃ¡lido.');
         error.status = 400;
         throw error;
       }
@@ -59,7 +75,7 @@ function createTaskService(repository = defaultRepository) {
     async deleteTask(id) {
       const numericId = Number(id);
       if (!Number.isSafeInteger(numericId) || numericId <= 0) {
-        const error = new Error('El identificador de la tarea no es válido.');
+        const error = new Error('El identificador de la tarea no es vÃ¡lido.');
         error.status = 400;
         throw error;
       }
@@ -69,3 +85,5 @@ function createTaskService(repository = defaultRepository) {
 }
 
 module.exports = { createTaskService };
+
+

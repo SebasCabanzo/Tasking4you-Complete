@@ -1,13 +1,18 @@
+﻿import { Check, Trash2, ClipboardList, CalendarDays } from 'lucide-react';
 
-import { Check, Trash2, ClipboardList } from 'lucide-react';
+function formatDate(value) {
+  if (!value) return 'Sin fecha límite';
+  const date = new Date(`${String(value).slice(0, 10)}T00:00:00`);
+  return new Intl.DateTimeFormat('es-CO', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  }).format(date);
+}
 
 function TaskList({ tasks, onToggleTask, onDeleteTask }) {
   if (tasks.length === 0) {
     return (
       <div className="empty-state">
-        <div className="empty-icon">
-          <ClipboardList size={32} />
-        </div>
+        <div className="empty-icon"><ClipboardList size={32} /></div>
         <h3>No hay tareas por aquí</h3>
         <p>Agrega una nueva actividad para comenzar a organizarte.</p>
       </div>
@@ -29,16 +34,17 @@ function TaskList({ tasks, onToggleTask, onDeleteTask }) {
           <div className="task-information">
             <h4>{task.title}</h4>
             {task.description && <p>{task.description}</p>}
+            <div className="task-dates">
+              <span><CalendarDays size={14} /> Creada: {formatDate(task.created_at)}</span>
+              <span><CalendarDays size={14} /> Fecha límite: {formatDate(task.due_date)}</span>
+            </div>
             <span className={`task-status ${task.done ? 'status-done' : 'status-pending'}`}>
               {task.done ? 'Completada' : 'Pendiente'}
             </span>
           </div>
 
-          <button
-            className="delete-task"
-            onClick={() => onDeleteTask(task.id)}
-            aria-label="Eliminar tarea"
-          >
+          <button className="delete-task" onClick={() => onDeleteTask(task.id)}
+            aria-label="Eliminar tarea">
             <Trash2 size={18} />
           </button>
         </article>

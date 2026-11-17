@@ -1,9 +1,10 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { Plus } from 'lucide-react';
 
 function TaskForm({ onAddTask }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [dueDate, setDueDate] = useState('');
   const [saving, setSaving] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -15,13 +16,14 @@ function TaskForm({ onAddTask }) {
     try {
       const saved = await onAddTask({
         title: cleanTitle,
-        description: description.trim()
+        description: description.trim(),
+        due_date: dueDate || null
       });
 
-      // Only clear the form after the API confirms the task was saved.
       if (saved) {
         setTitle('');
         setDescription('');
+        setDueDate('');
       }
     } finally {
       setSaving(false);
@@ -35,13 +37,9 @@ function TaskForm({ onAddTask }) {
           <h3>Crear nueva tarea</h3>
           <p>Agrega una actividad a tu lista.</p>
         </div>
-        <button
-          className="form-icon"
-          type="button"
+        <button className="form-icon" type="button"
           aria-label="Ir al campo de nueva tarea"
-          title="Nueva tarea"
-          onClick={() => document.getElementById('task-title')?.focus()}
-        >
+          onClick={() => document.getElementById('task-title')?.focus()}>
           <Plus size={21} />
         </button>
       </div>
@@ -63,6 +61,17 @@ function TaskForm({ onAddTask }) {
           value={description}
           onChange={(event) => setDescription(event.target.value)}
           maxLength={5000}
+        />
+
+        <label className="due-date-label" htmlFor="task-due-date">
+          Fecha límite para completar
+        </label>
+        <input
+          id="task-due-date"
+          type="date"
+          value={dueDate}
+          min={new Date().toLocaleDateString('en-CA')}
+          onChange={(event) => setDueDate(event.target.value)}
         />
 
         <button type="submit" disabled={!title.trim() || saving}>

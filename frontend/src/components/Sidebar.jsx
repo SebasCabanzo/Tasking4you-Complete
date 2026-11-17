@@ -1,4 +1,4 @@
-
+﻿
 import {
   LayoutDashboard,
   ListTodo,
@@ -13,7 +13,8 @@ function Sidebar({ activeFilter, setActiveFilter, taskCounts }) {
   const menuItems = [
     { id: 'all', label: 'Todas las tareas', icon: ListTodo, count: taskCounts.total },
     { id: 'pending', label: 'Pendientes', icon: Clock3, count: taskCounts.pending },
-    { id: 'completed', label: 'Completadas', icon: CheckCircle2, count: taskCounts.completed }
+    { id: 'completed', label: 'Completadas', icon: CheckCircle2, count: taskCounts.completed },
+    { id: 'calendar', label: 'Calendario', icon: CalendarDays }
   ];
 
   return (
@@ -35,7 +36,7 @@ function Sidebar({ activeFilter, setActiveFilter, taskCounts }) {
         Nueva tarea
       </button>
 
-      <div className="menu-label">MENÚ PRINCIPAL</div>
+      <div className="menu-label">MENÃš PRINCIPAL</div>
 
       <nav className="sidebar-menu">
         {menuItems.map((item) => {
@@ -49,7 +50,7 @@ function Sidebar({ activeFilter, setActiveFilter, taskCounts }) {
             >
               <Icon size={19} />
               <span>{item.label}</span>
-              <span className="menu-count">{item.count}</span>
+              {item.count !== undefined && <span className="menu-count">{item.count}</span>}
             </button>
           );
         })}
@@ -58,13 +59,13 @@ function Sidebar({ activeFilter, setActiveFilter, taskCounts }) {
       <div className="sidebar-bottom">
         <div className="sidebar-tip">
           <CalendarDays size={22} />
-          <strong>Organiza tu día</strong>
-          <p>Pequeños avances hacen grandes resultados.</p>
+          <strong>Organiza tu dÃ­a</strong>
+          <p>PequeÃ±os avances hacen grandes resultados.</p>
         </div>
 
         <button className="menu-item settings-item">
           <Settings size={19} />
-          <span>Configuración</span>
+          <span>ConfiguraciÃ³n</span>
         </button>
 
         <div className="sidebar-user">
@@ -80,3 +81,4 @@ function Sidebar({ activeFilter, setActiveFilter, taskCounts }) {
 }
 
 export default Sidebar;
+

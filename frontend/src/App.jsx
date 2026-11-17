@@ -1,4 +1,4 @@
-
+﻿
 import { useEffect, useState } from 'react';
 import { CheckCircle2, Clock3, ListTodo, Sparkles } from 'lucide-react';
 
@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
+import CalendarView from './components/CalendarView';
 import './App.css';
 
 const API_URL = (
@@ -32,7 +33,7 @@ async function apiRequest(endpoint, options = {}) {
   const data = await response.json().catch(() => ({}));
 
   if (!response.ok) {
-    throw new Error(data.message || data.error || 'No se pudo completar la operación.');
+    throw new Error(data.message || data.error || 'No se pudo completar la operaciÃ³n.');
   }
 
   return data;
@@ -42,10 +43,15 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [activeFilter, setActiveFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme((current) => current === 'light' ? 'dark' : 'light');
+  };
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Cargar las tareas desde PostgreSQL al iniciar la aplicación.
+  // Cargar las tareas desde PostgreSQL al iniciar la aplicaciÃ³n.
   useEffect(() => {
     const loadTasks = async () => {
       try {
@@ -76,7 +82,8 @@ function App() {
         method: 'POST',
         body: JSON.stringify({
           title: taskData.title,
-          description: taskData.description || ''
+          description: taskData.description || '',
+          due_date: taskData.due_date || null
         })
       });
 
@@ -166,7 +173,7 @@ function App() {
   }).format(new Date());
 
   return (
-    <div className="app-layout">
+    <div className={`app-layout theme-${theme}`}>
       <Sidebar
         activeFilter={activeFilter}
         setActiveFilter={setActiveFilter}
@@ -177,14 +184,16 @@ function App() {
         <Header
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
+          theme={theme}
+          onToggleTheme={toggleTheme}
         />
 
         <div className="dashboard-content">
           <section className="welcome-section">
             <div>
               <span className="date-label">{today}</span>
-              <h1>¡Hola! Bienvenido a tu espacio.</h1>
-              <p>Organiza tus actividades y haz que cada día cuente.</p>
+              <h1>Â¡Hola! Bienvenido a tu espacio.</h1>
+              <p>Organiza tus actividades y haz que cada dÃ­a cuente.</p>
             </div>
             <div className="welcome-decoration">
               <Sparkles size={38} />
@@ -226,36 +235,44 @@ function App() {
             </p>
           )}
 
-          <section className="workspace">
-            <div className="workspace-main">
-              <div className="section-heading">
-                <div>
-                  <h2>Mis actividades</h2>
-                  <p>Administra y revisa tus tareas.</p>
-                </div>
-                <span className="task-total">
-                  {filteredTasks.length} tareas
-                </span>
-              </div>
+          {activeFilter === 'calendar' ? (
+  loading ? (
+    <p>Cargando calendario...</p>
+  ) : (
+    <CalendarView tasks={tasks} />
+  )
+) : (
+  <section className="workspace">
+    <div className="workspace-main">
+      <div className="section-heading">
+        <div>
+          <h2>Mis actividades</h2>
+          <p>Administra y revisa tus tareas.</p>
+        </div>
+        <span className="task-total">
+          {filteredTasks.length} tareas
+        </span>
+      </div>
 
-              {loading ? (
-                <p>Cargando tareas...</p>
-              ) : (
-                <TaskList
-                  tasks={filteredTasks}
-                  onToggleTask={toggleTask}
-                  onDeleteTask={deleteTask}
-                />
-              )}
-            </div>
+      {loading ? (
+        <p>Cargando tareas...</p>
+      ) : (
+        <TaskList
+          tasks={filteredTasks}
+          onToggleTask={toggleTask}
+          onDeleteTask={deleteTask}
+        />
+      )}
+    </div>
 
-            <div className="workspace-form">
-              <TaskForm onAddTask={addTask} />
-            </div>
-          </section>
+    <div className="workspace-form">
+      <TaskForm onAddTask={addTask} />
+    </div>
+  </section>
+)}
 
           <footer className="dashboard-footer">
-            <span>Tasking4You © 2026</span>
+            <span>Tasking4You Â© 2026</span>
             <span>Organiza tu tiempo, alcanza tus metas.</span>
           </footer>
         </div>
@@ -265,3 +282,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+

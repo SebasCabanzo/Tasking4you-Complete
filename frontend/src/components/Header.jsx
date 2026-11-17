@@ -1,7 +1,8 @@
+﻿import { Search, Bell, Sun, Moon } from 'lucide-react';
 
-import { Search, Bell, Sun } from 'lucide-react';
+function Header({ searchTerm, setSearchTerm, theme, onToggleTheme }) {
+  const isDark = theme === 'dark';
 
-function Header({ searchTerm, setSearchTerm }) {
   return (
     <header className="header">
       <div className="header-greeting">
@@ -20,11 +21,22 @@ function Header({ searchTerm, setSearchTerm }) {
           />
         </div>
 
-        <button className="header-icon" aria-label="Tema">
-          <Sun size={20} />
+        <button
+          className="header-icon"
+          type="button"
+          aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+          title={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+          onClick={onToggleTheme}
+        >
+          {isDark ? <Sun size={20} /> : <Moon size={20} />}
         </button>
 
-        <button className="header-icon notification-button" aria-label="Notificaciones">
+        <button
+          className="header-icon notification-button"
+          type="button"
+          aria-label="Notificaciones"
+          title="Notificaciones"
+        >
           <Bell size={20} />
           <span className="notification-dot"></span>
         </button>
