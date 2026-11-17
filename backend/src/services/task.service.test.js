@@ -66,3 +66,23 @@ test('elimina una tarea existente y devuelve false si no existe', async () => {
   assert.equal(await service.deleteTask(String(task.id)), true);
   assert.equal(await service.deleteTask(String(task.id)), false);
 });
+
+test('acepta una fecha límite ISO válida', async () => {
+  const service = createTaskService(makeRepository());
+  const task = await service.createTask({ title: 'Entrega', due_date: '2026-12-01' });
+  assert.equal(task.due_date, '2026-12-01');
+});
+
+test('rechaza una fecha límite que no sea texto', async () => {
+  const service = createTaskService(makeRepository());
+  await assert.rejects(service.createTask({ title: 'Entrega', due_date: 123 }), {
+    status: 400, message: 'La fecha límite no es válida.'
+  });
+});
+
+test('rechaza una fecha de calendario inexistente', async () => {
+  const service = createTaskService(makeRepository());
+  await assert.rejects(service.createTask({ title: 'Entrega', due_date: '2026-02-30' }), {
+    status: 400, message: 'La fecha límite no es válida.'
+  });
+});
