@@ -21,7 +21,7 @@ function createTaskService(repository = defaultRepository) {
 
       if (dueDate !== null) {
         const validFormat = typeof dueDate === 'string'
-          && /^\\d{4}-\\d{2}-\\d{2}$/.test(dueDate);
+          && /^\d{4}-\d{2}-\d{2}$/.test(dueDate);
         const parsedDate = validFormat ? new Date(`${dueDate}T00:00:00Z`) : null;
         const validDate = parsedDate && !Number.isNaN(parsedDate.getTime())
           && parsedDate.toISOString().slice(0, 10) === dueDate;
